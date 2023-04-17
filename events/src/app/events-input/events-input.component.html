@@ -1,12 +1,14 @@
 <div class="w-50 m-2 position-relative d-flex flex-column" style="height: fit-content;">
-  <div class="input-group mb-3" >
-    <span class="input-group-text" id="basic-addon1">Title</span>
-    <input type="text" class="form-control" placeholder="Title" aria-label="title" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3" >
-    <span class="input-group-text" id="basic-addon1">Date</span>
-    <input type="text" class="form-control" placeholder="Date" aria-label="date" aria-describedby="basic-addon1">
-  </div>
-    <button type="button" class="btn btn-dark">Create Event</button>
+  <form [formGroup]="eventForm" (ngSubmit)="onCreateEvent()">
+    <div class="input-group mb-3" >
+      <span class="input-group-text" id="basic-addon1">Title</span>
+      <input type="text" class="form-control" placeholder="Title" aria-label="title" aria-describedby="basic-addon1" formControlName="title">
+    </div>
+    <div class="input-group mb-3" >
+      <span class="input-group-text" id="basic-addon1">Date</span>
+      <input type="text" class="form-control" placeholder="Date" aria-label="date" aria-describedby="basic-addon1" formControlName="date">
+    </div>
+      <button type="submit" class="btn btn-dark">Create Event</button>
+  </form>
 </div>
 

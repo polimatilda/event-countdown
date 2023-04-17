@@ -10,13 +10,19 @@ export class EventsService {
 
   constructor(private readonly http: HttpClient) { }
 
+  private readonly url = 'http://localhost:3000/events'
+
   getAllEvents(): Observable<EventItem[]> {
-    return this.http.get<EventItem[]>("http://localhost:3000/events").pipe(map(data => {
+    return this.http.get<EventItem[]>(this.url).pipe(map(data => {
       console.log(data)
       return data.map((item) => ({
         title: item.title,
         date: new Date(item.date)
       }))
     }))
+  }
+
+  addNewEvent(event: EventItem): Observable<EventItem> {
+    return this.http.post<EventItem>(this.url, event)
   }
 }

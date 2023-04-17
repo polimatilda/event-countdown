@@ -15,10 +15,27 @@ export class EventsListComponent implements OnInit, OnDestroy {
   constructor(private readonly eventsService: EventsService) {}
 
   ngOnInit(): void {
-    this.eventsService.getAllEvents().subscribe((value) => this.eventsList = value)
+    this.eventsService.getAllEvents().subscribe((value) => {
+      this.eventsList = value
+  
+      this.eventsList.forEach((event) => {
+        event.countdown = this.getEventCountdown(event)
+      })
+    })
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
+  }
+
+  private getEventCountdown(event: EventItem): string {
+    const now = new Date()
+    const eventDate = new Date(event.date)
+    const diff = Math.max(eventDate.getTime() - now.getTime(), 0)
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+
+    return `${days} days ${hours} hours ${minutes} minutes`
   }
 }
