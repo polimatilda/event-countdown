@@ -11,9 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class EventsInputComponent implements OnInit {
   eventForm: FormGroup = new FormGroup({})
 
-  title: string = ""
-  date: Date = new Date
-
   constructor(
     private readonly eventsService: EventsService,
     private readonly formBuilder: FormBuilder
@@ -34,7 +31,7 @@ export class EventsInputComponent implements OnInit {
     }
 
     this.eventsService.addNewEvent(newEvent).subscribe((event) => {
-      console.log("event added", event)
+      console.log("Event added: ", event)
       this.eventForm.reset()
     })
   }

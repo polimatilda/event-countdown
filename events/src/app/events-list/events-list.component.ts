@@ -12,16 +12,34 @@ export class EventsListComponent implements OnInit, OnDestroy {
   eventsList: EventItem[] = []
   subscription: Subscription = new Subscription()
 
-  constructor(private readonly eventsService: EventsService) {}
+  constructor(private readonly eventsService: EventsService) { }
 
   ngOnInit(): void {
-    this.eventsService.getAllEvents().subscribe((value) => {
+    // this.eventsService.getAllEvents().subscribe((value) => {
+    //   this.eventsList = value
+
+    //   this.eventsList.forEach((event) => {
+    //     event.countdown = this.getEventCountdown(event)
+    //   })
+    // })
+
+    this.subscription.add(this.eventsService.getAllEvents().subscribe((value) => {
       this.eventsList = value
-  
+
       this.eventsList.forEach((event) => {
         event.countdown = this.getEventCountdown(event)
       })
-    })
+    }))
+
+    this.subscription.add(
+      this.eventsService.getNewEventSubject().subscribe((event) => {
+        this.eventsList.push({
+          title: event.title,
+          date: new Date(event.date),
+          countdown: this.getEventCountdown(event)
+        })
+      })
+    )
   }
 
   ngOnDestroy(): void {
