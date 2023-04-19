@@ -15,19 +15,15 @@ export class EventsListComponent implements OnInit, OnDestroy {
   constructor(private readonly eventsService: EventsService) { }
 
   ngOnInit(): void {
-    // this.eventsService.getAllEvents().subscribe((value) => {
-    //   this.eventsList = value
-
-    //   this.eventsList.forEach((event) => {
-    //     event.countdown = this.getEventCountdown(event)
-    //   })
-    // })
-
     this.subscription.add(this.eventsService.getAllEvents().subscribe((value) => {
       this.eventsList = value
 
       this.eventsList.forEach((event) => {
         event.countdown = this.getEventCountdown(event)
+      })
+
+      this.eventsList = this.eventsList.filter((event) => {
+        return event.countdown !== "0 days 0 hours 0 minutes"
       })
     }))
 
