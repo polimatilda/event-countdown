@@ -5,9 +5,10 @@ Homework project - Events with countdown
 - use json-server package & observables
 - add new events with a short form
 - minimal style (with Bootstrap)
+- filters out the event where the countdown reached 0
 
 - Login branch:
-  - dummy login somponent
+  - dummy login component (login available at /login)
   - username: username, password: password
   - redirects to dashboard
   - login is not stored yet, so daschboard is available without login
