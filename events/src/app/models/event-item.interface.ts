@@ -1,5 +1,5 @@
 export interface EventItem {
-  title: string,
-  date: Date,
+  title: string;
+  date: Date;
   countdown?: string;
 }

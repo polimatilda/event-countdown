@@ -11,11 +11,7 @@ import { EventsInputComponent } from './events-input/events-input.component';
 import { EventsListComponent } from './events-list/events-list.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EventsInputComponent,
-    EventsListComponent,
-  ],
+  declarations: [AppComponent, EventsInputComponent, EventsListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +19,6 @@ import { EventsListComponent } from './events-list/events-list.component';
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
